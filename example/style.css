@@ -1,0 +1,8 @@
+
+html,body { font-family:Helvetica, sans-serif; }
+.bezier { width:50px; height:10px; position:absolute; background:blue; z-index:-100; left:120px; top:160px; margin-left:-20px; }
+.btn { width:100px; height:20px; position:absolute; cursor:pointer; }
+.prev { left:100px; }
+.elementSwitch { left:200px; }
+.popup { display:none; position:absolute; left:300px; }
+.popup:first-child { display:block; }

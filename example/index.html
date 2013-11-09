@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+		<title>Bezier Curve Demo</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="../src/bezier.min.js"></script>
+		<script src="init.js"></script>
+
+	</head>
+	<body>
+
+		<!-- the element to animate -->
+		<div class="bezier"></div>
+
+		<div class="next btn">next</div>
+		<div class="prev btn">prev</div>
+		<div class="elementSwitch btn">Popup One</div>
+
+		<div class="popup-container">
+			<div class="popup" data-start="0" data-end="25" id="popup1"><h2>Message One!</h2></div>
+			<div class="popup" data-start="25" data-end="50" id="popup2"><h2>Message Two!</h2></div>
+			<div class="popup" data-start="50" data-end="75" id="popup3"><h2>Message Three!</h2></div>
+			<div class="popup" data-start="75" data-end="100" id="popup4"><h2>Message Four!</h2></div>
+		</div>
+
+		<canvas id="myCanvas" width="500" height="500"></canvas>
+
+	</body>
+</html>
