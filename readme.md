@@ -1,4 +1,3 @@
-
 Usage
 ========
 
@@ -18,7 +17,7 @@ var curve  = Bezier.createCurve({
 ##Animate curve
 ---------------
 
-```Bezier.animateCurve``` requires jQuery. This function animates the position of an element between two points along a bezier curve. The start and end paramters must be between 0 and 1.
+```Bezier.animateCurve``` requires jQuery. This function animates the position of an element between two points along a bezier curve. The start and end paramters must be between 0 and 100.
 
 ```
 var points = [[120, 160], [35, 200], [220, 260], [220, 40]];
