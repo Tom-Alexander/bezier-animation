@@ -65,10 +65,6 @@ $(function(){
 			*
 			* Draws the vertical bars along the curve 9.1px apart
 			*
-			* Note that it is possible that a point does not occur
-			* on the curve such that its x-component is a multiple of 
-			* 9.1, so the closest point on the curve is taken (Math.floor)
-			*
 			*/
 
 			ctx.moveTo(curve[Math.floor(index)][0],curve[Math.floor(index)][1]);
@@ -84,6 +80,8 @@ $(function(){
 
 			var width = curve[Math.floor(index + 9.1)][0] - curve[Math.floor(index)][0];
 	  		ctx.fillRect (curve[Math.floor(index)][0],curve[Math.floor(index)][1], width, 50);
+
+	  		console.log(width);
 
 		 	ctx.strokeStyle = '#000000';	
 			ctx.stroke();
