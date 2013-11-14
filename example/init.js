@@ -1,47 +1,94 @@
 $(function(){
 
-	var points = [[120, 160], [35, 200], [220, 260], [220, 40]];
+	var points = [[115, 239],[500,239],[500, 5],[940,5]];
 
-	// this curve is just to generate the canvas drawing
+	$elementToAnimate = $('.bezier');
+	var counter = [0, 9.1];
+	
 	var curve  = Bezier.createCurve({
 		points: points,
 		start: 0,
 		end: 100
 	});
 
-	var c=document.getElementById("myCanvas");
-	var ctx=c.getContext("2d");
-	for(var j = 0; j < curve.length; j++){
-		ctx.beginPath();
-		ctx.arc(curve[j][0], curve[j][1], 4, 0, 2 * Math.PI, false);
-		ctx.fillStyle = 'black';
-		ctx.fill();
-	}
-
-	var $ele = $('.bezier');
-	var $currentElement = $('.popup-container .popup').first();
 
 	$('.next').click(function(){
-		$currentElement = $currentElement.next().length > 0 ? $currentElement.next() : $('.popup-container .popup').first();
-			Bezier.animateCurve($ele, points, $currentElement.data('start'), $currentElement.data('end'), function(a){
-			$('.popup').hide();
-			$currentElement.show();
+		Bezier.animateCurve($elementToAnimate, points, counter[0], counter[1], function(a){
+			counter[0] += 9.1;
+			counter[1] += 9.1;
 		});
 	});
+
 
 	$('.prev').click(function(){
-		$currentElement = $currentElement.prev().length > 0 ? $currentElement.prev() : $('.popup-container .popup').last();
-		Bezier.animateCurve($ele, points, $currentElement.data('end'), $currentElement.data('start'), function(a){
-		$('.popup').hide();
-		$currentElement.show();
+		Bezier.animateCurve($elementToAnimate, points, counter[1], counter[0], function(a){
+			counter[0] -= 9.1;
+			counter[1] -= 9.1;
 		});
 	});
 
-	$('.elementSwitch').click(function(){				
-		Bezier.animateCurve($ele, points, $currentElement.data('start'), $('#popup1').data('start'), function(a){
-			$('.popup').hide();
-			$currentElement = $('#popup1');
-			$currentElement.show();
-		});
-	})
+	/*
+	*
+	* DRAW CURVE 
+	*
+	* for IE8:
+	* https://code.google.com/p/explorercanvas/
+	*/
+
+
+	var c=document.getElementById("myCanvas");
+	var ctx=c.getContext("2d");
+
+	drawCurve();
+	drawBars();
+
+
+	function drawCurve(){
+
+		ctx.beginPath();
+		ctx.moveTo(curve[0][0],curve[0][1]);
+
+		for(var j = 1; j < curve.length; j++){
+			ctx.lineTo(curve[j][0],curve[j][1]);
+		}
+
+		ctx.strokeStyle = '#000000';	
+		ctx.stroke();
+	}
+
+	function drawBars(){
+		var index = 0;
+
+		for(var i = 0; i < 11; i++){
+
+			/*
+			*
+			* Draws the vertical bars along the curve 9.1px apart
+			*
+			* Note that it is possible that a point does not occur
+			* on the curve such that its x-component is a multiple of 
+			* 9.1, so the closest point on the curve is taken (Math.floor)
+			*
+			*/
+
+			ctx.moveTo(curve[Math.floor(index)][0],curve[Math.floor(index)][1]);
+			ctx.lineTo(curve[Math.floor(index)][0],curve[Math.floor(index)][1] - 10);
+
+			ctx.fillStyle = "#ff0000";
+
+			/* 
+			* Draws the red squares
+			* The distance between each bar is not the same for all of them
+			* 
+			*/
+
+			var width = curve[Math.floor(index + 9.1)][0] - curve[Math.floor(index)][0];
+	  		ctx.fillRect (curve[Math.floor(index)][0],curve[Math.floor(index)][1], width, 50);
+
+		 	ctx.strokeStyle = '#000000';	
+			ctx.stroke();
+			index += 9.1;
+		}
+	}
+
 })

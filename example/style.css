@@ -1,6 +1,6 @@
 
-html,body { font-family:Helvetica, sans-serif; }
-.bezier { width:50px; height:10px; position:absolute; background:blue; z-index:-100; left:120px; top:160px; margin-left:-20px; }
+html,body { font-family:Helvetica, sans-serif; margin: 0; padding: 0; }
+.bezier { margin-left: -15px; margin-top: -10px; width:50px; height:10px; position:absolute; background:blue; z-index:-100; left:115px; top:239px; margin-left:-20px; }
 .btn { width:100px; height:20px; position:absolute; cursor:pointer; }
 .prev { left:100px; }
 .elementSwitch { left:200px; }
